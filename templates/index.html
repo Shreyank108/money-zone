@@ -1,0 +1,269 @@
+{% extends "base.html" %} {% load static %} {% block title %}Home{% endblock title %} 
+{% block header %} 
+
+<link rel="stylesheet" href="{% static "css/index.css" %}" />
+
+{% endblock header %} 
+{% block body %}
+<!--Main Body Content-->
+
+<div id="main">
+  <div id="page1">
+    <div id="img1">
+      <img
+        src="https://media.istockphoto.com/id/1371763060/photo/social-media-applications.jpg?s=612x612&w=0&k=20&c=1rbwKNHkJY8RaBdtGIoib9PLA6g4IuxsWH3VpSMCiv0="
+        alt=""
+      />
+    </div>
+    <div id="img2"></div>
+    <div id="inp">
+      <input type="text" , placeholder="search here" />
+      <div id="search">
+        <i class="ri-search-line"></i>
+      </div>
+    </div>
+    <div id="text">
+      <h2 id="blue-perl">Money Zone</h2>
+      <h5>Place Where You Learn To <br />Earn</h5>
+    </div>
+    <div id="page2">
+      <h2>We <span>Provide</span></h2>
+      <div id="ex">
+        <div id="one">
+          <i class="ri-book-3-line"></i>
+          <h3>20+ cources</h3>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Consectetur consequuntur exercitationem quas ducimus impedit
+            nostrum.
+          </p>
+        </div>
+        <div id="two">
+          <i class="ri-presentation-fill"></i>
+
+          <h3>8+ Trainer</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
+            sequi porro eaque maxime officiis quae!
+          </p>
+        </div>
+        <div id="three">
+          <i class="ri-user-5-line"></i>
+          <h3>Inrolled Students</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium
+            autem voluptate, aspernatur repellendus fugit fugiat.
+          </p>
+        </div>
+      </div>
+    </div>
+    {% if not user.is_authenticated %}
+    <div id="page4">
+      <div id="duo">
+        <div id="login">
+          <div id="log1">
+            <div id="layer">
+              <h3>Here You Go</h3>
+            </div>
+          </div>
+          <div id="log2">
+            <h4 id="can1"><i class="ri-close-line"></i></h4>
+            <h3>Sign In</h3>
+            <form action="auth/signin" method="post">
+              {% csrf_token %}
+              <div id="inpi">
+                <input type="text" placeholder="Username" name="username" />
+                <hr />
+                <input type="password" placeholder="Password" name="passw" />
+                <hr />
+              </div>
+              <button id="blink">
+                <h5>Proceed</h5>
+              </button>
+            </form>
+            <a href="#">Forgot Password</a><br />
+            <a id="dont" href="">New user ? Create an account</a>
+          </div>
+        </div>
+      </div>
+      <div id="duo2">
+        <form action="auth/signup" method="post">
+        <div id="signup">
+          <div id="si2"></div>
+          <div id="si1">
+              {% csrf_token %}
+              <h4 id="can2"><i class="ri-close-line"></i></h4>
+              <h3>Signup</h3>
+              <input type="text" placeholder="Username" name="username" />
+              <hr />
+              <input type="text" placeholder="Name(First and Last)" name="name" />
+              <hr />
+              <input type="email" placeholder="Email" name="email" />
+              <hr />
+              <label for="cars">As:</label>
+              <select name="type" id="type">
+                <option value="0">Student</option>
+                <option value="1">Instructor</option>
+              </select>
+              <input type="password" placeholder="password" name="passw" />
+              <hr />
+              <input
+                type="text"
+                placeholder="Confirm Password"
+                name="con_passw"
+              />
+              <hr />
+              <button id="blink" type="submit">Create account</button>
+              <a id="already" href="#">Already have an account</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    {% endif %}
+  </div>
+  <div id="page3">
+    <h1>Our <span>Packages</span></h1>
+    <div id="box2">
+      {% for p in package %}
+      <div id="cont{{p.id}}">
+        <h3>{{p.name}}</h3>
+        <img src="{{p.image.url}}" alt="" />
+      </div>
+      <div id="cont{{p.id}}-box">
+        <i id="cancel{{p.id}}" class="ri-close-line"></i>
+        <ul>
+          {% for courses in all_courses %}
+          {% if courses.package.id == p.id %}
+          <li>
+            <h4>{{courses.name}}</h4>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+        <a href="/course/view-package/{{p.slug}}"><button>View More</button></a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="page5">
+    <h1>Instructor At Golden Money</h1>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem fugiat facere eum similique culpa ea ex quia quidem repellat. Quasi?</p>
+    <div id="dui">
+      {% for i in instructor %}
+      <div class="card">
+        <div id="imgbox">
+          {% if i.profile_image %}
+          <img src="{{i.profile_image.url}}" alt="instructor image" style="height: 100%; width: 100%;" />
+          {% endif %}
+        </div>
+          <div id="namew">
+            <h5>{{i.first_name}} {{i.last_name}}</h5>
+          </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div id="page6">
+    <h1>Most Demanding Courses</h1>
+    <p>These courses are loved by many students:</p>
+    <div id="dui">
+      {% for c in course %}
+      <div class="card">
+        <div id="imgbox">
+          {% if c.image %}
+          <img src="{{c.image.url}}" alt="course image" style="height: 100%; width: 100%;" />
+          {% endif %}
+        </div>
+          <div id="namew">
+            <h5>{{c.name}}</h5>
+            <h5>{{c.package.name}}</h5>
+            <p>{{c.about}}</p>
+          </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div id="page7">
+    <div id="dolo">
+      <div id="pic_of_founder">
+        {% if founder.profile_image %}
+        <img src="{{founder.profile_image.url}}" alt="founder" height=350 width=300/>
+        {% endif %}
+      </div>
+      <div id="discript">
+        <h3>Meet Our Founder - {{founder.name}}</h3>
+        <p>{{founder.description}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div id="foot">
+      <div id="f1">
+        <h4>More About Company</h4>
+        <p>
+          {{company.description}}
+        </p>
+      </div>
+      <div id="f2">
+        <h4>Keep Connected</h4>
+        <div id="det1">
+          <div class="blo">
+            <i class="ri-facebook-circle-line"></i>
+            <p>{{company.facebook}}</p>
+          </div>
+          <div class="blo">
+            <i class="ri-twitter-line"></i>
+            <p>{{company.twitter}}</p>
+          </div>
+          <div class="blo">
+            <i class="ri-instagram-line"></i>
+            <p>{{company.instagram}}</p>
+          </div>
+        </div>
+      </div>
+      <div id="f3">
+        <h4>Contact Us</h4>
+
+        <div id="det2">
+          <div class="blo">
+            <i class="ri-home-8-line"></i>
+            <p>{{company.address}}</p>
+          </div>
+          <div class="blo">
+            <i class="ri-phone-line"></i>
+            <p>{{company.phone}}</p>
+          </div>
+          <div class="blo">
+            <i class="ri-mail-send-fill"></i>
+            <p>{{company.email}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="foot2">
+      <p>
+        &copy 2023 Money Zone All right Reserved | Full Website Created by
+        <b><a href="#">NOC</a></b> <i id="up" class="ri-arrow-up-s-line"></i>
+      </p>
+      <div id="pokbox">
+        <hr />
+        <h5>Fronted Dev -</h5>
+        <h5>Shreyank Agrawal</h5>
+
+        <hr />
+        <h5>Backend Dev-</h5>
+        <h5>Tanishk Shrivastava</h5>
+        <hr />
+        <h3>NOC</h3>
+        <h6>Night Owl Coorporations</h6>
+        <hr />
+        <i id="cancelne" class="ri-close-line"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock body %} {% block script %} {% endblock script %}

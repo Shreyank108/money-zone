@@ -1,0 +1,137 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block title %}User Profile{%endblock title %} 
+{% block header %} 
+<link rel="stylesheet" href="{% static "css/user_profile.css" %}"> 
+{% endblock header %} 
+{% block body %}
+
+<div id="mainpro">
+  <div id="one">
+    <div id="m1">
+      <div id="e1">
+        {% if user.profile_image %}
+        <img src="{{user.profile_image.url}}" alt="profile_image" />
+        {% else %}
+        <h5><i class="ri-image-add-line" id="add_image"></i></h5>
+        <form action="set_profile_image" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="micro" id="micro">
+          <h5><i class="ri-close-line" id="remove"></i></h5>
+          {{form.as_p}}
+          <button type="submit">Set Image</button>
+        </div>
+      </form>
+        {% endif %}
+      </div>
+      <h3>{{user.username}}</h3>
+    </div>
+    <div id="m2">
+      {% if not user.website or not user.instagram or not user.facebook %}
+      <form action="set_links" method="post">
+        {% csrf_token %}
+        <p>Links are unchangeable.</p>
+      <div id="links">
+        <div id="l1">
+          <div id="l1s">
+            <i class="ri-global-line"></i>
+            <p><b>Website</b></p>
+          </div>
+          <input type="link" placeholder="link" name="website"/>
+        </div>
+      </div>
+      <div id="links">
+        <div id="l1">
+          <div id="l1s">
+            <i class="ri-global-line"></i>
+            <p><b>instagram</b></p>
+          </div>
+          <input type="link" placeholder="link" name="instagram"/>
+        </div>
+      </div>
+      <div id="links">
+        <div id="l1">
+          <div id="l1s">
+            <i class="ri-global-line"></i>
+            <p><b>facebook</b></p>
+          </div>
+          <input type="link" placeholder="link" name="facebook"/>
+        </div>
+      </div>
+      <button type="submit" class="but_save">Save</button>
+    </form>
+      
+      {% else %}
+      
+      <div id="links">
+        <div id="l1">
+          <div id="l1s">
+            <i class="ri-global-line"></i>
+            <p><b>Website</b></p>
+          </div>
+          <p>{{user.website}}</p>
+        </div>
+      </div>
+      <div id="links">
+        <div id="l1">
+          <div id="l1s">
+            <i class="ri-global-line"></i>
+            <p><b>instagram</b></p>
+          </div>
+          <p>{{user.instagram}}</p>
+        </div>
+      </div>
+      <div id="links">
+        <div id="l1">
+          <div id="l1s">
+            <i class="ri-global-line"></i>
+            <p><b>facebook</b></p>
+          </div>
+          <p>{{user.facebook}}</p>
+        </div>
+      </div>
+    
+      {% endif %}
+      
+    </div>
+  </div>
+  <div id="two">
+    <div id="m3">
+      <div class="ind">
+        <h5>Full Name</h5>
+        <p><b>{{user.first_name}} {{user.last_name}}</b></p>
+      </div>
+      <div class="ind">
+        <h5>Email</h5>
+        <p><b>{{user.email}}</b></p>
+      </div>
+      <div class="ind">
+        <h5>Phone</h5>
+        <p><b>{{user.phone_number}}</b></p>
+      </div>
+    </div>
+    <div id="m45">
+      <div id="d4">
+        <div id="m4"></div>
+        <h4>Today earning</h4>
+      </div>
+      <div id="d4">
+        <div id="m4"></div>
+        <h4>Week earning</h4>
+      </div>
+      <div id="d4">
+        <div id="m4"></div>
+        <h4>Monthly earning</h4>
+      </div>
+      <div id="d4">
+        <div id="m4"></div>
+        <h4>Total earning</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock body %} 
+{% block script %} 
+<script src="{% static 'js/user_profile.js' %}"></script>
+{% endblock script %}

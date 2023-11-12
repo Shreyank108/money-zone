@@ -1,0 +1,326 @@
+@font-face {
+  font-family: gilroy;
+  src: url(../fonts/Gilroy-Medium.otf);
+}
+@font-face {
+  font-family: monteserrat;
+  src: url(../fonts/Montserrat-Black.ttf);
+}
+@font-face {
+  font-family: callifornia;
+  src: url(../fonts/Callifornia.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  background: url("http://thecodeplayer.com/u/m/b1.png") no-repeat center center
+    fixed;
+  background-size: cover;
+  min-width: 500px;
+  min-height: 200px;
+  color: #fff;
+  font-family: monteserrat;
+  height: 100vmax;
+}
+
+.bars {
+  /*   background-color:pink; */
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  top: 30px;
+  right: 30px;
+  cursor: pointer;
+  z-index: 101;
+  padding-top: 9px;
+}
+
+.bar {
+  width: 100%;
+  height: 4px;
+  background-color: #fff;
+  position: absolute;
+}
+
+span::before,
+span::after {
+  content: "";
+  display: block;
+  background-color: #fff;
+  width: 100%;
+  height: 4px;
+  position: absolute;
+}
+
+.bar::before {
+  transform: translateY(-9px);
+}
+
+.bar::after {
+  transform: translateY(9px);
+}
+
+.bars.active .bar {
+  background-color: transparent;
+}
+
+.bars.active span::before {
+  animation: top-bar 1s;
+  animation-fill-mode: forwards;
+}
+
+.bars.active span::after {
+  animation: bottom-bar 1s;
+  animation-fill-mode: forwards;
+}
+
+/* Navbar Links CSS */
+
+#nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: all 1s;
+  z-index: -1;
+  overflow: hidden;
+  opacity: 0;
+}
+
+#nav a {
+  color: #fff;
+  text-decoration: none;
+  line-height: 70vw;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-indent: 50vw;
+  border-radius: 50%;
+  transition: all 0.5s;
+}
+
+#nav a:hover {
+  background: #fdc135;
+}
+
+ul {
+  list-style: none;
+}
+
+.visible {
+  z-index: 100 !important;
+  opacity: 1 !important;
+}
+
+.shape-circle {
+  border-radius: 50%;
+  width: 20vw;
+  height: 20vw;
+  top: -10vw;
+  right: -10vw;
+  position: absolute;
+  transition: all 1s ease-in-out;
+  background: #fdc135;
+  box-shadow: 0 0px 0px rgba(4, 26, 62, 0.5);
+}
+
+nav.visible li:first-child {
+  width: 200vw;
+  height: 200vw;
+  top: -100vw;
+  right: -100vw;
+  z-index: 5;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0 0px 80px rgba(4, 26, 62, 0.5);
+}
+
+nav.visible li:nth-child(2) {
+  width: 150vw;
+  height: 150vw;
+  top: -75vw;
+  right: -75vw;
+  z-index: 6;
+  transition: all 0.6s ease-in-out;
+  box-shadow: 0 0px 80px rgba(4, 26, 62, 0.5);
+}
+
+nav.visible li:nth-child(3) {
+  width: 100vw;
+  height: 100vw;
+  top: -50vw;
+  right: -50vw;
+  z-index: 7;
+  transition: all 0.7s ease-in-out;
+  box-shadow: 0 0px 80px rgba(4, 26, 62, 0.5);
+}
+
+nav.visible li:last-child {
+  width: 50vw;
+  height: 50vw;
+  top: -25vw;
+  right: -25vw;
+  z-index: 8;
+  transition: all 0.8s ease-in-out;
+  box-shadow: 0 0px 80px rgba(4, 26, 62, 0.5);
+}
+
+nav.visible li:first-child a {
+  line-height: 265vw !important;
+  text-indent: 15vw !important;
+}
+
+nav.visible li:nth-child(2) a {
+  line-height: 200vw !important;
+  text-indent: 17vw !important;
+}
+
+nav.visible li:nth-child(3) a {
+  line-height: 137vw !important;
+  text-indent: 17vw !important;
+}
+
+nav.visible li:last-child a {
+  line-height: 70vw !important;
+  text-indent: 12vw !important;
+}
+
+#other-nav {
+  width: 70vw;
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  top: 30px;
+  left: 20px;
+  color: white;
+  z-index: 999;
+}
+
+#other-nav button {
+  padding: 7px 25px;
+  border-radius: 10px;
+}
+
+#sec {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+#sec a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  transition: all ease 1s;
+}
+#sec a:hover {
+  color: gold;
+  filter: drop-shadow(5px 20px 15px rgb(255, 153, 0));
+}
+
+ul {
+  color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#footer {
+  width: 100vw;
+  height: 45vh;
+  background-color: rgb(22, 22, 22);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  filter: drop-shadow(10px 10px 10px white);
+}
+#foot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85vw;
+  height: 30vw;
+  padding: 10px;
+  gap: 40px;
+}
+#f1,
+#f2,
+#f3 {
+  display: flex;
+  flex-direction: column;
+
+  text-align: left;
+  gap: 20px;
+}
+#f1 {
+  width: 40vw;
+  padding: 0px 20px;
+}
+#foot p {
+  width: 20vw;
+  font-size: 15px;
+}
+#f1 p {
+  width: 35vw;
+}
+.blo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+#foot2 {
+  width: 100vw;
+  padding: 12px 20px;
+  background-color: rgba(135, 132, 132, 0.655);
+  padding: 5px 30px;
+}
+#foot2 p {
+  margin-left: 75px;
+}
+#det2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 7px;
+}
+#det1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 7px;
+}
+#footer h4 {
+  filter: drop-shadow(10px 0px 15px orange);
+}
+#pokbox {
+  width: 200px;
+  height: 120px;
+  border-radius: 4px;
+  background-color: rgb(69, 68, 68);
+  position: absolute;
+  bottom: 60px;
+  right: 40vw;
+  padding: 10px;
+  display: none;
+}
+#cancelne {
+  position: absolute;
+  bottom: 3%;
+  right: 10%;
+}

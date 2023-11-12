@@ -1,0 +1,153 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block title %}Dashboard{%endblock title %} 
+{% block header %} 
+<link rel="stylesheet" href="{% static "css/dashboard.css" %}"> 
+{% endblock header %} 
+{% block body %}
+
+<div id="main">
+  <div id="pro">
+    <div id="left">
+      <div id="p1">
+        <div id="pro_img">
+          {% if user.profile_image %}
+          <img src="{{user.profile_image.url}}" alt="profile_image" height=60 width=60 style="border-radius: 50%;">
+          {% endif %}
+        </div>
+        <div id="p_text"><h3>{{user.username}}</h3></div>
+      </div>
+      <div class="p_cou">
+        <h6><i class="ri-artboard-line"></i></h6>
+        <a href="#"> <h6>My Course</h6></a>
+      </div>
+      <div class="p_cou">
+        <h6><i class="ri-bill-line"></i></h6>
+        <a id="affli" href="#"><h6>Affiliate</h6></a>
+      </div>
+      <div class="p_cou">
+        <h6><i class="ri-profile-line"></i></h6>
+        <a href="/user_profile"><h6>My Profile</h6></a>
+      </div>
+      <div id="cert" class="p_cou">
+        <h6><i class="ri-medal-line"></i></h6>
+        <a href="#"><h6>Certification</h6></a>
+      </div>
+    </div>
+    <div id="right">
+      <div id="dui">
+        {% for c in course %}
+        <div class="card">
+          <div id="imgbox">
+            {% if c.image %}
+            <img src="{{ c.image.url }}" alt="course image" style="height: 100%; width:100%;"/>
+            {% endif %}
+          </div>
+          <div id="namew">
+            <h5>{{c.name}}</h5>
+            <h5>{{c.package.name}}</h5>
+            <p>{{c.about}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div id="user_dash">
+    <i id="dashcancel" class="ri-close-line"></i>
+
+    <nav>
+      <div class="nav-items">
+        <a href="#">Home</a>
+        <a href="#">Dashboard</a>
+        <a href="#">Integrations</a>
+        <a href="#">Preferences</a>
+      </div>
+    </nav>
+
+    <header class="dashboard">
+      <h1>Dashboard</h1>
+    </header>
+
+    <main>
+      <div class="overpanel">
+        <div class="sales">
+          <h1>Sales Overview</h1>
+
+          <div class="row1">
+            <div class="rows column1">
+              <p>Visits</p>
+
+              <h1>8,920</h1>
+            </div>
+
+            <div class="rows column1">
+              <p>Transactions</p>
+
+              <h1>1,345</h1>
+            </div>
+
+            <div class="rows column2">
+              <p>Income</p>
+
+              <h1>$7,312</h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="analytics">
+          <h1>Analytics</h1>
+
+          <div class="row2">
+            <div class="another-one">
+              <div class="rows column3">
+                <p>Avg time on page</p>
+
+                <h1>4m</h1>
+              </div>
+
+              <div class="rows column4" style="height: 46px">
+                <p>Real-time Monitoring</p>
+
+                <h1>Off</h1>
+              </div>
+            </div>
+
+            <div class="another-two">
+              <div class="rows column1">
+                <p>Online Members</p>
+
+                <h1>234</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div id="certi">
+    <h3><i class="ri-close-line"></i></h3>
+    <h1>My certificates 🎖️</h1>
+
+    <div id="dui">
+      <div class="card">
+        <div id="imgbox"></div>
+        <div id="loader">
+          <div id="load"></div>
+          <p>0%</p>
+        </div>
+        <div id="namew">
+          <h5>Lorem, ipsum dolor.</h5>
+          <p>Lorem ipsum dolor sit amet consectetur.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock body %} 
+{% block script %} 
+
+<script type="text/javascript" src="{% static "js/dashboard.js" %}"></script>
+
+{% endblock script %}

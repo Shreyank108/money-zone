@@ -1,0 +1,65 @@
+{% extends "base.html" %} {% load static %} {% block title %}Manage Site{% endblock title %}
+{% block header %}
+
+<style>
+    .container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .box{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        height: 50%;
+    }
+    .left{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    .left form{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .left input{
+        padding: 0.5rem 1rem;
+    }
+    .right{
+        width: 50%;
+    }
+
+</style>
+
+{% endblock header %}
+{% block body %}
+
+<div class="container">
+    <div class="box">
+        <div class="left">
+            <h1>Add Package</h1>
+            <form action="add-package" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="name">Package Name: </label>
+                <input type="text" name="name" id="name" placeholder="Enter Package Name" autocomplete="off" required>
+                <label for="price">Package Price: </label>
+                <input type="text" name="price" id="price" placeholder="Enter Package Price" autocomplete="off" required>
+                <label for="image">Package Image: </label>
+                <input type="file" name="image" id="image" placeholder="Enter Package Image" autocomplete="off" required>
+                <label for="desc">Package Description: </label>
+                <input type="text" name="desc" id="desc" placeholder="Enter Package Description" autocomplete="off" required>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div class="right"></div>
+    </div>
+</div>
+
+{% endblock body %} {% block script %} {% endblock script %}

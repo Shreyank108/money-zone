@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8' />
+<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+<title>DOCUMENT</title>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css' />
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css' />
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css' />
+<link href='https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css' rel='stylesheet' />
+<link rel="stylesheet" href="{% static "css/leaderboard.css" %}">
+</head>
+<body>
+
+    <div class="l-wrapper">
+        <div class="c-header"><img class="c-logo" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/813538/km-logo-color.svg" draggable="false"/>
+          <button class="c-button c-button--primary">Send Kudos</button>
+        </div>
+        <div class="l-grid">
+          <div class="l-grid__item l-grid__item--sticky">
+            <div class="c-card u-bg--light-gradient u-text--dark">
+              <div class="c-card__body">
+                <div class="u-display--flex u-justify--space-between">
+                  <div class="u-text--left">
+                    <div class="u-text--small">My Rank</div>
+                    <h2>3rd Place</h2>
+                  </div>
+                  <div class="u-text--right">
+                    <div class="u-text--small">My Score</div>
+                    <h2>{{earn.earned}}</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="c-card">
+              <div class="c-card__body">
+                <div class="u-text--center" id="winner"></div>
+              </div>
+            </div>
+          </div>
+          <div class="l-grid__item">
+            <div class="c-card">
+              <div class="c-card__header">
+                <h3>Received Kudos</h3>
+                <select class="c-select">
+                  <option selected="selected">Sunday, Feb. 23 - Sunday, Feb. 30</option>
+                </select>
+              </div>
+              <div class="c-card__body">
+                <ul class="c-list" id="list">
+                  <li class="c-list__item">
+                    <div class="c-list__grid">
+                      <div class="u-text--left u-text--small u-text--medium">Rank</div>
+                      <div class="u-text--left u-text--small u-text--medium">Members</div>
+                      <div class="u-text--right u-text--small u-text--medium"># of earned</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<script src='https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js'integrity='sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ=='crossorigin='anonymous' referrerpolicy='no-referrer'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js'integrity='sha512-AMl4wfwAmDM1lsQvVBBRHYENn1FR8cfOTpt8QVbb/P55mYOdahHD4LmHM1W55pNe3j/3od8ELzPf/8eNkkjISQ=='crossorigin='anonymous' referrerpolicy='no-referrer'></script>
+<script src='https://code.jquery.com/jquery-3.6.4.js'integrity='sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=' crossorigin='anonymous'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.6.1/jquery.lettering.min.js'integrity='sha512-VJ/iYbiu1eJ6yLimfTi65t2R9TFcG5D9X8ZCfbbEFhTfPnKJh8byoKXEawi5ScJZBYL1eiirL1+MczZDx0Tz9Q=='crossorigin='anonymous' referrerpolicy='no-referrer'></script>
+<script src='https://unpkg.com/textillate@0.4.1/jquery.textillate.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js'></script>
+<script src='{% static "js/leaderboard.js" %}'></script>
+</body>
+</html>
